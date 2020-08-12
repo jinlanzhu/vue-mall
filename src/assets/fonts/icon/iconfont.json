@@ -1,0 +1,65 @@
+{
+  "id": "2001215",
+  "name": "vue-mall",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "1140936",
+      "name": "see user",
+      "font_class": "seeuser",
+      "unicode": "e81f",
+      "unicode_decimal": 59423
+    },
+    {
+      "icon_id": "11488563",
+      "name": "Jurisdiction",
+      "font_class": "Jurisdiction",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "10265400",
+      "name": "data analysis",
+      "font_class": "dataanalysis",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "3888580",
+      "name": "shop",
+      "font_class": "shop",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "698160",
+      "name": "category- Selected",
+      "font_class": "categoryselected",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "10928223",
+      "name": "order-click",
+      "font_class": "orderclick",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "16474557",
+      "name": "password",
+      "font_class": "password",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "1199149",
+      "name": "users",
+      "font_class": "users",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    }
+  ]
+}
