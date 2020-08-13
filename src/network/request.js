@@ -10,6 +10,10 @@ export function request(config) {
   // 2. axios的拦截器
   // 2.1 请求拦截的作用
   instance.interceptors.request.use(config => {
+    console.log(config);
+    // 通过axios请求拦截器添加token,保证拥有获取数据的权限
+    // 为请求头对象,添加token验证的Authorization字段
+    config.headers.Authorization = window.sessionStorage.getItem('token')
     return config
   }, err => {
 
