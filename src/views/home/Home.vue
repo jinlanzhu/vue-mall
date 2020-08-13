@@ -19,6 +19,8 @@
             unique-opened
             :collapse="isCollapse"
             :collapse-transition="false"
+            router
+            :default-active="activePath"
           >
             <!-- 一级菜单 -->
             <el-submenu v-for="item in menuList" :key="item.id" :index="item.id + ''">
@@ -32,9 +34,10 @@
 
               <!-- 二级菜单 -->
               <el-menu-item
-                :index="subItem.id + ''"
+                :index="'/' + subItem.path"
                 v-for="subItem in item.children"
                 :key="subItem.id"
+                @click="saveNavState('/' + subItem.path)"
               >
                 <template slot="title">
                   <i class="el-icon-menu"></i>
@@ -44,7 +47,12 @@
             </el-submenu>
           </el-menu>
         </el-aside>
-        <el-main>Main</el-main>
+        <!-- main部分 -->
+        <el-main>
+          <!-- <welcome></welcome>
+          <users></users>-->
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -52,6 +60,9 @@
 
 <script>
 import { getMenusList } from '../../network/menus'
+import Welcome from './childComps/Welcome'
+import Users from 'views/users/Users'
+
 export default {
   data() {
     return {
@@ -65,12 +76,19 @@ export default {
         '102': 'iconfont icon-orderclick',
         '145': 'iconfont icon-dataanalysis'
       },
-      isCollapse: false
+      //是否合并
+      isCollapse: false,
+      // 激活的链接
+      activePath: ''
     }
   },
-  components: {},
+  components: {
+    Welcome,
+    Users
+  },
   created() {
     this.getMenusList()
+    this.activePath = window.sessionStorage.getItem('activePath')
   },
   methods: {
     /**
@@ -98,6 +116,11 @@ export default {
     //菜单栏的合并与展开
     collapseBtn() {
       this.isCollapse = !this.isCollapse
+    },
+    //保存链接的激活状态
+    saveNavState(activePath) {
+      window.sessionStorage.setItem('activePath', activePath)
+      this.activePath = activePath
     }
   }
 }

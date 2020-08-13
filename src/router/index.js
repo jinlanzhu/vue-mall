@@ -6,25 +6,40 @@ import "../assets/css/global.css"
 
 const Login = () => import('views/login/Login.vue')
 const Home = () => import('views/home/Home.vue')
+const Welcome = () => import('views/home/childComps/Welcome.vue')
+const Users = () => import('views/users/Users.vue')
 
 Vue.use(VueRouter)
 
-  const routes = [
-    {
-      path: '/',
-      redirect: '/login'
-    },
-    {
-      path: '/login',
-      name: Login,
-      component: Login
-    },
-    {
-      path: '/home',
-      name: Home,
-      component: Home
-    },
-  ]
+const routes = [
+  {
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/login',
+    name: Login,
+    component: Login
+  },
+  {
+    path: '/home',
+    name: Home,
+    component: Home,
+    redirect: '/welcome',
+    children: [
+      {
+        path: '/welcome',
+        name: Welcome,
+        component: Welcome
+      },
+      {
+        path: '/users',
+        name: Users,
+        component: Users
+      },
+    ]
+  },
+]
 
 const router = new VueRouter({
   routes,
@@ -37,13 +52,13 @@ const router = new VueRouter({
  */
 router.beforeEach((to, from, next) => {
   // 判断即将要去的是否是登录页面，是就放行
-  if(to.path === '/login') {
+  if (to.path === '/login') {
     return next()
   }
   //获取token值
   const tokenStr = window.sessionStorage.getItem('token')
   // 判断是否有token值，若没有，则跳转到登录页面
-  if(!tokenStr) {
+  if (!tokenStr) {
     next('/login')
   }
   next()
