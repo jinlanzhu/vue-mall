@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { getMenusList } from '../../network/menus'
+import { getMenusList } from '../../network/home'
 import Welcome from './childComps/Welcome'
 import Users from 'views/users/Users'
 
@@ -110,7 +110,6 @@ export default {
           })
         }
         this.menuList = res.data
-        console.log(this.menuList)
       })
     },
     //菜单栏的合并与展开
