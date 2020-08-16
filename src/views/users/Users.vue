@@ -233,14 +233,12 @@ export default {
      * 编辑用户按钮
      */
     editUserBtn() {
-      console.log('dg')
       this.$refs.editFormRef.$refs.editFormRef.validate(valid => {
-        console.log(valid)
         if (!valid) {
           return
         }
       })
-      this.editDialogVisible = falses
+      this.editDialogVisible = false
       this.getEditUser()
       //刷新用户列表
       this.getUsersList()
