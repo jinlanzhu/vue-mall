@@ -14,6 +14,7 @@
       @showAddUserDialog="showAddUserDialog"
       @showEditUserDialog="showEditUserDialog"
       @showDeleteUserBox="showDeleteUserBox"
+      @showSetRoleDialog="showSetRoleDialog"
     />
 
     <!-- 添加用户区域 -->
@@ -40,6 +41,45 @@
     </el-dialog>
 
     <!-- 删除区域 -->
+    <!-- 分配角色区域 -->
+    <el-dialog
+      title="分配角色"
+      :visible.sync="setRoleDialogVisible"
+      width="50%"
+      @close="setRoleDialogClosed"
+    >
+      <!-- <user-edit-form  ref="setRoleFormRef"></user-edit-form> -->
+      <!-- <user-set-role
+        ref="setRoleRef"
+        :user-info="userInfo"
+        :roles-list="rolesList"
+        :select-role-id="selectRoleId"
+      />-->
+      <div>
+        <p>当前用户：{{ userInfo.username}}</p>
+        <p>当前角色：{{userInfo.role_name}}</p>
+        <p>
+          分配新角色：
+          <el-select
+            ref="setRoleRef"
+            v-model="selectRoleId"
+            default-first-option
+            placeholder="请选择文章标签"
+          >
+            <el-option
+              v-for="item in rolesList"
+              :value="item.id"
+              :label="item.roleName"
+              :key="item.value"
+            ></el-option>
+          </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="setRoleBtn">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -50,13 +90,16 @@ import {
   getAddUser,
   getUserListById,
   getEditUser,
-  getDeleteUser
+  getDeleteUser,
+  getRolesList,
+  getSetRole
 } from 'network/home.js'
 
 import UsersNav from './childComps/UsersNav'
 import UsersList from './childComps/UsersList'
 import UserAddForm from './childComps/UserAddForm'
 import UserEditForm from './childComps/UserEditForm'
+import UserSetRole from './childComps/UserSetRole'
 
 export default {
   data() {
@@ -84,14 +127,21 @@ export default {
       // 是否显示编辑用户的对话框
       editDialogVisible: false,
       //获取通过id查询的信息
-      editForm: {}
+      editForm: {},
+      setRoleDialogVisible: false,
+      //用户信息
+      userInfo: {},
+      //角色列表
+      rolesList: [],
+      selectRoleId: ''
     }
   },
   components: {
     UsersNav,
     UsersList,
     UserAddForm,
-    UserEditForm
+    UserEditForm,
+    UserSetRole
   },
   created() {
     this.getUsersList()
@@ -297,6 +347,53 @@ export default {
         this.$message.success('删除成功！')
       })
       this.getUsersList()
+    },
+    showSetRoleDialog(role) {
+      console.log(role)
+      this.userInfo = role
+      console.log(this.userInfo)
+      this.getRolesList()
+      this.setRoleDialogVisible = true
+    },
+    setRoleDialogClosed() {
+      this.setRoleDialogVisible = false
+      this.selectRoleId = ''
+      this.userInfo = []
+      // this.$refs.setRoleRef.$refs.setRoleRef.resetFields()
+    },
+    /**
+     * 获取角色列表
+     */
+    getRolesList() {
+      getRolesList().then(res => {
+        console.log(res)
+        if (res.meta.status !== 200) {
+          return this.$message.error('获取角色列表失败！')
+        }
+        this.rolesList = res.data
+      })
+    },
+    /**
+     * 分配角色确定按钮
+     */
+    setRoleBtn() {
+      if (!this.selectRoleId) {
+        return this.$message.error('请选择要分配的角色名称！')
+      }
+      console.log(this.selectRoleId)
+      console.log(this.userInfo)
+      this.getSetRole()
+      this.getUsersList()
+      this.setRoleDialogVisible = false
+    },
+    getSetRole() {
+      getSetRole(this.userInfo.id, this.selectRoleId).then(res => {
+        console.log(res)
+        if (res.meta.status !== 200) {
+          return this.$message.error('更新角色失败！')
+        }
+        this.$message.success('更新角色成功！')
+      })
     }
   }
 }

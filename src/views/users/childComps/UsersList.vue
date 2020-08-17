@@ -42,7 +42,12 @@
                   icon="el-icon-delete"
                 ></el-button>
                 <el-tooltip class="item" effect="dark" content="分配角色" placement="top-start">
-                  <el-button type="warning" size="mini" icon="el-icon-setting"></el-button>
+                  <el-button
+                    type="warning"
+                    size="mini"
+                    icon="el-icon-setting"
+                    @click="setRole(scope.row)"
+                  ></el-button>
                 </el-tooltip>
               </template>
             </el-table-column>
@@ -117,6 +122,10 @@ export default {
     },
     deleteUserBtn(id) {
       this.$emit('showDeleteUserBox', id)
+    },
+    setRole(role) {
+      console.log(role)
+      this.$emit('showSetRoleDialog', role)
     }
   }
 }

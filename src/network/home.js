@@ -95,3 +95,25 @@ export function getDeleteUser(id) {
     url: '/users/' + id
   })
 }
+
+export function getRolesList() {
+  return request({
+    method: 'get',
+    url: '/roles'
+  })
+}
+
+/**
+ * 分配用户角色
+ * @param {*} id 用户id
+ * @param {*} rid  角色id
+ */
+export function getSetRole(id, rid) {
+  return request({
+    method: 'put',
+    url: '/users/' + id + '/role',
+    data: {
+      rid
+    }
+  })
+}
