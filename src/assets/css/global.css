@@ -21,3 +21,6 @@ html, body, div {
 .el-table {
   font-size: 13px !important;
 }
+.treeTable {
+  margin-top: 15px;
+}
