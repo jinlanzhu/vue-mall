@@ -98,7 +98,7 @@ export default {
       //指定联级选择器的配置对象
       cascaderProps: {
         // 配置触发选项 hover/click
-        expandTrigger: 'hover',
+        // expandTrigger: 'hover',
         value: 'cat_id',
         label: 'cat_name',
         children: 'children'
