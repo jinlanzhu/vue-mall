@@ -21,3 +21,12 @@ html, body, div {
 .el-table {
   font-size: 13px !important;
 }
+.el-step__title {
+  font-size: 13px !important;
+}
+.el-tag {
+  margin-right: 15px;
+}
+.quill-editor {
+  min-height: 300px;
+}
