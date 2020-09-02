@@ -10,8 +10,13 @@ const Welcome = () => import('views/home/childComps/Welcome.vue')
 const Users = () => import('views/users/Users.vue')
 const Rights = () => import('views/power/rights/Rights.vue')
 const Roles = () => import('views/power/roles/Roles.vue')
+<<<<<<< HEAD
 const Cate = () => import('views/goods/goodsCate/Cate.vue')
 const Params = () => import('views/goods/goodsParams/Params.vue')
+=======
+const Goods = () => import('views/goods/goodsList/Goods.vue')
+const Add = () => import('views/goods/goodsList/Add.vue')
+>>>>>>> goods_list
 
 
 Vue.use(VueRouter)
@@ -23,36 +28,37 @@ const routes = [
   },
   {
     path: '/login',
-    name: Login,
+    name: 'Login',
     component: Login
   },
   {
     path: '/home',
-    name: Home,
+    name: 'Home',
     component: Home,
     redirect: '/welcome',
     children: [
       {
         path: '/welcome',
-        name: Welcome,
+        name: 'Welcome',
         component: Welcome
       },
       {
         path: '/users',
-        name: Users,
+        name: 'Users',
         component: Users
       },
       {
         path: '/rights',
-        name: Rights,
+        name: 'Rights',
         component: Rights
       },
       {
         path: '/roles',
-        name: Roles,
+        name: 'Roles',
         component: Roles
       },
       {
+<<<<<<< HEAD
         path: '/categories',
         name: Cate,
         component: Cate
@@ -61,6 +67,16 @@ const routes = [
         path: '/params',
         name: Params,
         component: Params
+=======
+        path: '/goods',
+        name: 'Goods',
+        component: Goods
+      },
+      {
+        path: '/goods/add',
+        name: 'addGoods',
+        component: Add
+>>>>>>> goods_list
       }
     ]
   },

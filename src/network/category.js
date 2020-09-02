@@ -85,6 +85,7 @@ export function getDeleteCate(cat_id) {
     method: 'delete',
     url: '/categories/' + cat_id,
   })
+
 }
 
 /**
@@ -176,4 +177,7 @@ export function getGoodsCateListByTypeToThree() {
     url: '/categories',
   })
 }
+
+
+
 
