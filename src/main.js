@@ -38,7 +38,6 @@ Vue.component('tree-table', TreeTable)
 Vue.config.productionTip = false
 
 
-
 new Vue({
   router,
   render: h => h(App)
