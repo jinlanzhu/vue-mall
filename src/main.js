@@ -19,6 +19,7 @@ import "assets/fonts/icon/iconfont.css"
 // Vue.use(iView);
 
 
+import echarts from 'echarts'
 
 
 import VueQuillEditor from 'vue-quill-editor'
@@ -36,7 +37,7 @@ import TreeTable from 'vue-table-with-tree-grid'
 Vue.component('tree-table', TreeTable)
 
 Vue.config.productionTip = false
-
+Vue.use(echarts)
 
 new Vue({
   router,
