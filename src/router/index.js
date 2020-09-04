@@ -1,23 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// import Login from '../views/login/Login'
 import "../assets/css/global.css"
 
-const Login = () => import('views/login/Login.vue')
-const Home = () => import('views/home/Home.vue')
-const Welcome = () => import('views/home/childComps/Welcome.vue')
-const Users = () => import('views/users/Users.vue')
-const Rights = () => import('views/power/rights/Rights.vue')
-const Roles = () => import('views/power/roles/Roles.vue')
 
-const Cate = () => import('views/goods/goodsCate/Cate.vue')
-const Params = () => import('views/goods/goodsParams/Params.vue')
+const Login = () => import(/* webpackChunkName: "Login-Home-Welcome" */'views/login/Login.vue')
+const Home = () => import(/* webpackChunkName: "Login-Home-Welcome" */'views/home/Home.vue')
+const Welcome = () => import(/* webpackChunkName: "Login-Home-Welcome" */'views/home/childComps/Welcome.vue')
 
-const Goods = () => import('views/goods/goodsList/Goods.vue')
-const Add = () => import('views/goods/goodsList/Add.vue')
-const Orders = () => import('views/orders/Orders.vue')
-const Report = () => import('views/report/Report.vue')
+const Users = () => import(/* webpackChunkName: "Users-Rights-Roles" */'views/users/Users.vue')
+const Rights = () => import(/* webpackChunkName: "Users-Rights-Roles" */'views/power/rights/Rights.vue')
+const Roles = () => import(/* webpackChunkName: "Users-Rights-Roles" */'views/power/roles/Roles.vue')
+
+const Cate = () => import(/* webpackChunkName: "Cate-Params" */'views/goods/goodsCate/Cate.vue')
+const Params = () => import(/* webpackChunkName: "Cate-Params" */'views/goods/goodsParams/Params.vue')
+
+const Goods = () => import(/* webpackChunkName: "Goods-Add" */'views/goods/goodsList/Goods.vue')
+const Add = () => import(/* webpackChunkName: "Goods-Add" */'views/goods/goodsList/Add.vue')
+
+const Orders = () => import(/* webpackChunkName: "Orders-Report" */'views/orders/Orders.vue')
+const Report = () => import(/* webpackChunkName: "Orders-Report" */'views/report/Report.vue')
 
 
 
