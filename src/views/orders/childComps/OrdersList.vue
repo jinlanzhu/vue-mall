@@ -23,7 +23,9 @@
               </template>
             </el-table-column>
             <el-table-column prop="is_send" label="是否发货"></el-table-column>
-            <el-table-column prop="create_time" label="下单时间"></el-table-column>
+            <el-table-column prop="create_time" label="下单时间">
+              <template slot-scope="scope">{{scope.row.create_time | format}}</template>
+            </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
                 <el-button size="mini" type="primary" icon="el-icon-edit" @click="editAddressBtn"></el-button>
@@ -79,6 +81,41 @@ export default {
     total: Number
   },
   components: {},
+
+  filters: {
+    format(val) {
+      // return moment(val).format('YYYY-MM-DD HH:SS')
+      console.log(val)
+      let date = new Date(val)
+      console.log(date)
+      let year = date.getFullYear()
+      let month = date.getMonth() + 1
+      month = month < 10 ? '0' + month : month
+      let days = date.getDate()
+      days = days < 10 ? '0' + days : days
+
+      let hours = date.getHours()
+      hours = hours < 10 ? '0' + hours : hours
+      let minute = date.getMinutes()
+      minute = minute < 10 ? '0' + minute : minute
+      let second = date.getSeconds()
+      second = second < 10 ? '0' + second : second
+
+      return (
+        year +
+        '-' +
+        month +
+        '-' +
+        days +
+        ' ' +
+        hours +
+        ':' +
+        minute +
+        ':' +
+        second
+      )
+    }
+  },
   methods: {
     //监听 页数大小
     handleSizeChange(newSize) {
