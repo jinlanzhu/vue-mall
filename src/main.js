@@ -33,9 +33,11 @@ Vue.use(VueQuillEditor, /* { default global options } */)
 
 Vue.use(ElementUI)
 import TreeTable from 'vue-table-with-tree-grid'
+import { min } from 'lodash'
 Vue.component('tree-table', TreeTable)
 
 Vue.config.productionTip = false
+
 
 
 
