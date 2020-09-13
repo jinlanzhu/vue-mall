@@ -24,7 +24,7 @@
             <el-table-column prop="goods_price" label="商品价格（元）"></el-table-column>
             <el-table-column prop="goods_weight" label="商品重量"></el-table-column>
             <el-table-column prop="add_time" label="创建时间">
-              <template slot-scope="scope">{{ scope.row.add_time || showDate }}</template>
+              <template slot-scope="scope">{{ scope.row.add_time | showDate }}</template>
             </el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -81,8 +81,30 @@ export default {
   },
   filters: {
     showDate(value) {
-      let date = new Date(value * 1000)
-      return date.format('YYYY-MM-DD HH:mm:ss')
+      console.log(value)
+      let date = new Date(value)
+      console.log(date)
+      let year = date.getFullYear()
+      let month = (date.getMonth() + 1 + '').padStart(2, '0')
+      console.log(month)
+      let days = (date.getDay() + '').padStart(2, '0')
+
+      let hour = (date.getHours() + '').padStart(2, '0')
+      let minute = (date.getMinutes() + '').padStart(2, '0')
+      let second = (date.getSeconds() + '').padStart(2, '0')
+      return (
+        year +
+        '-' +
+        month +
+        '-' +
+        days +
+        ' ' +
+        hour +
+        ':' +
+        minute +
+        ':' +
+        second
+      )
     }
   },
   components: {},
